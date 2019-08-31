@@ -32,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logIn(View view) {
-
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-        if (username != "" && password != "") {
+        if (username.equals("") && password.equals("")) {
+            Toast.makeText(getApplicationContext(), "Make sure to fill blank", Toast.LENGTH_SHORT).show();
+        } else {
             SharedPreferences.Editor editor = pref.edit();
             editor.putString(KEY_USERNAME, username);
             editor.putString(KEY_PASSWORD, password);
@@ -43,7 +44,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         }
-        else Toast.makeText(getApplicationContext(),"Make sure to fill blank",Toast.LENGTH_SHORT).show();
-
     }
 }
